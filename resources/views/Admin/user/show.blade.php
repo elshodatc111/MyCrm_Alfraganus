@@ -138,9 +138,8 @@
                         <input type="text" name="naqt" value="0" id="summa1" class="form-control" required>
                         <label for="plastik" class="mb-1 mt-2">To'lov summasi (PLASTIK)</label>
                         <input type="text" name="plastik" value="0" id="summa2" class="form-control" required>
-                        <label for="guruh_id" class="mb-1 mt-2">Chegirmali guruhni tanlang.</label>
+                        <label for="guruh_id" class="mb-1 mt-2">To'lov uchun guruhni tanlang.</label>
                         <select name="guruh_id"  class="form-select">
-                            <option value="NULL">Tanlang...</option>
                             @foreach($ChegirmaGuruh as $item)
                             <option value="{{ $item['guruh_id'] }}">{{ $item['guruh_name'] }} (Tulov:{{ $item['chegirmaTulov'] }})</option>
                             @endforeach

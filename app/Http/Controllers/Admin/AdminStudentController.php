@@ -268,21 +268,13 @@ class AdminStudentController extends Controller{
     }
     public function chegirmaliGuruhlar($id){
         $userArxivGuruh = GuruhUser::where('user_id',$id)->where('status','true')->get();
-        $ChegirmaDay = ChegirmaDay::where('filial_id',request()->cookie('filial_id'))->first()->days;
-        $ChegirmaDays = date("Y-m-d",strtotime('-'.$ChegirmaDay.' day',strtotime(date('Y-m-d'))));
         $Guruhlar = array();
         foreach ($userArxivGuruh as $key => $value) {
-            $Guruh = Guruh::where('id',$value->guruh_id)->where('guruh_start','>=',$ChegirmaDays)->first();
+            $Guruh = Guruh::where('id',$value->guruh_id)->first();
             if($Guruh){
-                $Tulovs = count(Tulov::where('user_id',$id)
-                    ->where('guruh_id',$value->guruh_id)
-                    ->where('type','Chegirma')->get());
-                if($Tulovs>0){}
-                else{
-                    $Guruhlar[$key]['guruh_id'] = $Guruh->id;
-                    $Guruhlar[$key]['guruh_name'] = $Guruh->guruh_name;
-                    $Guruhlar[$key]['chegirmaTulov'] = $Guruh->guruh_price-$Guruh->guruh_chegirma;
-                }
+                $Guruhlar[$key]['guruh_id'] = $Guruh->id;
+                $Guruhlar[$key]['guruh_name'] = $Guruh->guruh_name;
+                $Guruhlar[$key]['chegirmaTulov'] = $Guruh->guruh_price-$Guruh->guruh_chegirma;
             }
         }
         return $Guruhlar;
