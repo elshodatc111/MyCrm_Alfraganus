@@ -60,7 +60,15 @@ class AdminTecherController extends Controller{
             $TecherTulov = $value->techer_price*$value->guruh_price/100;
             $GuruhgaTulovlar = 0;
             foreach (Tulov::where('guruh_id',$value->id)->get() as $key => $value_1) {
-                $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
+                if($value_1['type']=='Naqt'){
+                    $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
+                }
+                if($value_1['type']=='Plastik'){
+                    $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
+                }
+                if($value_1['type']=='Payme'){
+                    $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
+                }
             }
             $TecherBonus = $value->techer_bonus;
             if($value->guruh_start>date("Y-m-d")){$newGuruh = $newGuruh + 1;

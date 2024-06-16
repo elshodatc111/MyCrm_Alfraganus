@@ -26,7 +26,15 @@ class SuperAdminTecherController extends Controller{
     public function ishHaqiHisoblash($guruh_id){
         $Summa = 0;
         foreach (Tulov::where('guruh_id',$guruh_id)->get() as $key => $value) {
-            $Summa = $Summa + $value->summa;
+            if($value['type']=='Naqt'){
+                $Summa = $Summa + $value->summa;
+            }
+            if($value['type']=='Plastik'){
+                $Summa = $Summa + $value->summa;
+            }
+            if($value['type']=='Payme'){
+                $Summa = $Summa + $value->summa;
+            }
         }
         return $Summa;
     }
