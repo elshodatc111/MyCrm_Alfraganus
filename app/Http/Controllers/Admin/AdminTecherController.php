@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\FilialKassa;
 use App\Models\IshHaqi;
 use App\Models\Guruh;
+use App\Models\Tulov;
 use App\Models\GuruhUser;
 use App\Models\GuruhTime;
 use App\Models\Davomat;
@@ -23,7 +24,6 @@ class AdminTecherController extends Controller{
     }
     public function index(){
         $Techers = User::where('filial_id',request()->cookie('filial_id'))->where('type','Techer')->where('status','true')->get();
-
         return view('Admin.techer.index',compact('Techers'));
     }
     public function techerCreate(Request $request){
@@ -57,7 +57,11 @@ class AdminTecherController extends Controller{
         $activGuruh = 0;
         $endGuruh = 0;
         foreach ($Guruhlar as $key => $value) {
-            $TecherTulov = $value->techer_price;
+            $TecherTulov = $value->techer_price*$value->guruh_price/100;
+            $GuruhgaTulovlar = 0;
+            foreach (Tulov::where('guruh_id',$value->id)->get() as $key => $value_1) {
+                $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
+            }
             $TecherBonus = $value->techer_bonus;
             if($value->guruh_start>date("Y-m-d")){$newGuruh = $newGuruh + 1;
             }elseif($value->guruh_end<date("Y-m-d")){$endGuruh = $endGuruh + 1;
@@ -65,18 +69,11 @@ class AdminTecherController extends Controller{
             $tulov = 0;
             $IshHaqi = IshHaqi::where('user_id',$id)->where('status',$value->id)->get();
             foreach ($IshHaqi as $items) {$tulov = $tulov + $items->summa;}
-            $bonuss = 0;
-            $Student = GuruhUser::where('guruh_id',$value->id)->where('status','true')->get();
-            foreach ($Student as $talaba) {
-                $BonusTalaba = count(GuruhUser::where('user_id',$talaba->user_id)->where('created_at','>=',$talaba->created_at)->where('status','true')->get());
-                if($BonusTalaba>1){$bonuss = $bonuss + 1;}
-            } 
             $Guruh[$key]['id'] = $value->id;
             $Guruh[$key]['guruh_name'] = $value->guruh_name;
             $Guruh[$key]['guruh_start'] = $value->guruh_start;
             $Guruh[$key]['guruh_end'] = $value->guruh_end;
             $Guruh[$key]['Users'] = count(GuruhUser::where('guruh_id',$value->id)->where('status','true')->get());
-            $Guruh[$key]['Bonus'] = $bonuss;
             $Guruh[$key]['delete'] = count(GuruhUser::where('guruh_id',$value->id)->where('status','false')->get());
             $GuruhTime = GuruhTime::where('guruh_id',$value->id)->get();
             $CountDavomat = 0;
@@ -87,16 +84,10 @@ class AdminTecherController extends Controller{
                     $CountDavomat = $CountDavomat + 1;
                 }
             }
-            if(count($GuruhTime)==0){
-                $TecherTulov = $TecherTulov*count($GuruhTime)*$Guruh[$key]['Users']*$CountDavomat;
-            }else{
-                $TecherTulov = $TecherTulov/count($GuruhTime)*$Guruh[$key]['Users']*$CountDavomat;
-            }
-            
-            $TecherBonus = $TecherBonus*$bonuss;
             $Guruh[$key]['Davomat'] = $CountDavomat;
-            $Guruh[$key]['Hisoblandi'] = number_format($TecherTulov + $TecherBonus, 0, '.', ' ');
-            $Guruh[$key]['Tulov'] = number_format($tulov, 0, '.', ' ');
+            $Guruh[$key]['Hisoblandi'] = number_format($GuruhgaTulovlar + $TecherBonus, 0, '.', ' ');
+            $Guruh[$key]['JamiTulovlar'] = number_format($GuruhgaTulovlar*$value->techer_price/100, 0, '.', ' ');
+            $Guruh[$key]['Tolangan'] = number_format($tulov, 0, '.', ' ');
         }
         $Statistika['new'] = $newGuruh;
         $Statistika['activ'] = $activGuruh;

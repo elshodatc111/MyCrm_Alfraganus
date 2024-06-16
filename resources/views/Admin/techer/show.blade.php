@@ -5,7 +5,7 @@
 <main id="main" class="main">
 
 <div class="pagetitle">
-    <h1>O'qituvchi</h1>
+    <h1>O'qituvchi</h1>   
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('Admin') }}">Bosh sahifa</a></li>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="col-lg-4">
             <div class="card info-card sales-card">
                 <div class="card-body text-center">
@@ -147,7 +147,7 @@
                             <div class="col-12">
                                 <label for="summa">Guruhni tanlang</label>
                                 <select name="guruh_id" class="form-select mb-2" required>
-                                    <option value="guruh_id">Tanlang</option>
+                                    <option value="">Tanlang</option>
                                     @foreach($Guruh as $item)
                                     <option value="{{ $item['id'] }}">{{ $item['guruh_name'] }}</option>
                                     @endforeach
@@ -205,7 +205,7 @@
             <h5 class="card-title mb-0 pb-0">O'qituvchi guruhlari</h5>
             <p class="m-0 p-0 text-danger" style="font-size:10px;">(Guruh yakunlangandan 30 kundan so'ng guruhlar o'chiriladi)</p>
             <div class="table-responsive">
-                <table class="table table-bordered text-center table-striped table-hover" style="font-size:14px;">
+                <table class="table table-bordered text-center table-striped table-hover" style="font-size:12px;">
                     <thead>
                         <tr>
                             <th class="bg-primary text-white">#</th>
@@ -214,9 +214,9 @@
                             <th class="bg-primary text-white">Tugash vaqti</th>
                             <th class="bg-primary text-white">Talabalar</th>
                             <th class="bg-primary text-white">Talaba o'chirildi</th>
-                            <th class="bg-primary text-white">Bonus</th>
                             <th class="bg-primary text-white">Davomad</th>
-                            <th class="bg-primary text-white">Ish haqi</th>
+                            <th class="bg-primary text-white">Jami to'lovlar</th>
+                            <th class="bg-primary text-white">Xisoblangan ish haqi</th>
                             <th class="bg-primary text-white">To'langan</th>
                         </tr>
                     </thead>
@@ -229,10 +229,10 @@
                             <td>{{ $item['guruh_end'] }}</td>
                             <td>{{ $item['Users'] }}</td>
                             <td>{{ $item['delete'] }}</td>
-                            <td>{{ $item['Bonus'] }}</td>
                             <td>{{ $item['Davomat'] }}</td>
-                            <td style="text-align:right">{{ $item['Hisoblandi'] }}</td>
-                            <td style="text-align:right">{{ $item['Tulov'] }}</td>
+                            <td>{{ $item['Hisoblandi'] }}</td>
+                            <td style="text-align:right">{{ $item['JamiTulovlar'] }}</td>
+                            <td style="text-align:right">{{ $item['Tolangan'] }}</td>
                         </tr>
                         @empty
                         <tr>
