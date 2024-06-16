@@ -54,12 +54,8 @@
                                     <td style="text-align:right;width:50%">{{ $Guruh['techer_id'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th style="text-align:left;width:50%">O'qituvchiga to'lov</th>
-                                    <td style="text-align:right;width:50%">{{ $Guruh['techer_price'] }}</td>
-                                </tr>
-                                <tr>
-                                    <th style="text-align:left;width:50%">O'qituvchiga bonus</th>
-                                    <td style="text-align:right;width:50%">{{ $Guruh['techer_bonus'] }}</td>
+                                    <th style="text-align:left;width:50%">O'qituvchiga to'lov %</th>
+                                    <td style="text-align:right;width:50%">{{ $Guruh['techer_price'] }} %</td>
                                 </tr>
                                 <tr>
                                     <th style="text-align:left;width:50%">Boshlanish vaqti</th>
@@ -512,9 +508,8 @@
                                     @endforeach
                                 </select>
                                 <label for="techer_price" class="mt-2">O'qituvchiga to'lov</label>
-                                <input type="text"  id="summa2" name="techer_price" value="{{ $Guruh['techer_price'] }}" required class="form-control">
-                                <label for="techer_bonus" class="mt-2">O'qituvchiga bonus</label>
-                                <input type="text"  id="summa3" name="techer_bonus" value="{{ $Guruh['techer_bonus'] }}" required class="form-control">
+                                <input type="number"  min=0 max=100 name="techer_price" value="{{ $Guruh['techer_price'] }}" required class="form-control">
+                                <input type="hidden"  name="techer_bonus" value="{{ $Guruh['techer_bonus'] }}">
                             </div>
                             <div class="col-6">
                                 <button type="button" class="btn btn-secondary my-2 w-100" data-bs-dismiss="modal">Bekor qilish</button>
@@ -600,20 +595,11 @@
                                     </select>
                                     <label for="techer_id">Guruh o'qituvchisi</label>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-floating mt-2">
-                                            <input type="text" id="summa1" class="form-control" name="techer_price" value="{{ $Guruh['techer_price'] }}" id="techer_price" required>
-                                            <label for="techer_price">O'qituvchiga to'lov</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-floating mt-2">
-                                            <input type="text" id="summa2" class="form-control"  name="techer_bonus" value="{{ $Guruh['techer_bonus'] }}" id="techer_bonus" required>
-                                            <label for="techer_bonus">O'qituvchiga bonus</label>
-                                        </div>
-                                    </div>
+                                <div class="form-floating mt-2">
+                                    <input type="number" min=0 max=100 class="form-control" name="techer_price" value="{{ $Guruh['techer_price'] }}" id="techer_price" required>
+                                    <label for="techer_price">O'qituvchiga to'lov</label>
                                 </div>
+                                <input type="hidden" name="techer_bonus" value="0">
                             </div>
                             <div class="col-12">
                                 <hr>

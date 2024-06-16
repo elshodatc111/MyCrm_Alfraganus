@@ -92,17 +92,9 @@
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="techer_price"  class="pt-2">O'qituvchiga to'lov</label>
-                                    <input type="text" name="techer_price" class="form-control" id="summa1" required>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="techer_bonus" class="pt-2">O'qituvchiga bonus</label>
-                                    <input type="text" name="techer_bonus" class="form-control" id="summa2" required>
-                                </div>
-                            </div>
-                            
+                            <label for="techer_price"  class="pt-2">O'qituvchiga to'lov(Umumiy to'lovdan %)</label>
+                            <input type="number" name="techer_price" class="form-control" min=0 max=100 required>
+                            <input type="hidden" name="techer_bonus" value="0" required>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary w-50 mt-2">Davom etish</button>

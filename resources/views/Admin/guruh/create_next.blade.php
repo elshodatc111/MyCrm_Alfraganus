@@ -41,12 +41,8 @@
                                 <td style="text-align:right">{{ $NewGuruh['techer_id'] }}</td>
                             </tr>
                             <tr>
-                                <th style="text-align:left">O'qituvchiga to'lov:</th>
-                                <td style="text-align:right">{{ $NewGuruh['techer_price'] }}</td>
-                            </tr>
-                            <tr>
-                                <th style="text-align:left">O'qituvchiga bonus:</th>
-                                <td style="text-align:right">{{ $NewGuruh['techer_bonus'] }}</td>
+                                <th style="text-align:left">O'qituvchiga to'lov: %</th>
+                                <td style="text-align:right">{{ $NewGuruh['techer_price'] }} %</td>
                             </tr>
                         </table>
                     </div>
