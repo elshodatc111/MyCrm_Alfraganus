@@ -24,13 +24,13 @@
                 <h5 class="card-title w-100 text-center mb-1 pb-1">O'qituvchiga to'lovlar</h5>
                 <p class="text-danger p-0 m-0 w-100 text-center">O'qituvchi guruhlari yakunlangadan 30 kundan kiyin avtoamatik o'chiriladi.</p>
                 <div class="table-responsive">
-                    <table class="table text-center table-bordered" style="font-size:14px;">
+                    <table class="table text-center table-bordered" style="font-size:12px;">
                         <thead>
                             <tr>
                                 <th class="bg-primary text-white">#</th>
                                 <th class="bg-primary text-white">Filial</th>
-                                <th class="bg-primary text-white">Guruh</th>
                                 <th class="bg-primary text-white">O'qituvchi</th>
+                                <th class="bg-primary text-white">Guruh</th>
                                 <th class="bg-primary text-white">Hisoblangan</th>
                                 <th class="bg-primary text-white">To'langan</th>
                                 <th class="bg-primary text-white">Qoldiq</th>
@@ -41,17 +41,11 @@
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
                                 <td>{{ $item['filial_name'] }}</td>
-                                <td>{{ $item['guruh_name'] }}</td>
-                                <td>{{ $item['techer'] }}</td>
-                                <td>{{ $item['hisoblash2'] }}</td>
-                                <td>{{ $item['tulov2'] }}</td>
-                                <td>
-                                    @if($item['qoldiq']>=0)
-                                        {{ $item['qoldiq2'] }}
-                                    @else
-                                        <b class="text-danger">{{ $item['qoldiq2'] }}</b>
-                                    @endif
-                                </td>
+                                <td style="text-align:left">{{ $item['techer'] }}</td>
+                                <td style="text-align:left">{{ $item['guruh_name'] }}</td>
+                                <td>{{ $item['JamiTolov'] }}</td>
+                                <td>{{ $item['HisoblanganIshHaqi'] }}</td>
+                                <td>{{ $item['IshHaqiTolovi'] }}</td>
                             </tr>
                             @empty
                             <tr>
