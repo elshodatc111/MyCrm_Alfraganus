@@ -127,7 +127,6 @@ class TecherController extends Controller
             $Tulov[$key]['time'] = $value->created_at;
             $Tulov[$key]['guruh'] = Guruh::find($value->status)->guruh_name;
         }
-        #dd($Tulov);
         return view('Techer.pays',compact('Tulov'));
     }
     public function Kabinet(){
