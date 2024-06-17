@@ -165,7 +165,7 @@
                                                 <textarea name="text" placeholder="SMS matni..." required class="form-control my-3"></textarea>
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Bekor qilisk</button>
+                                                        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Bekor qilish</button>
                                                     </div>
                                                     <div class="col-6">
                                                         <button type="submit" class="btn btn-success w-100">SMS yuborish</button>

@@ -218,7 +218,7 @@
                             <th class="bg-primary text-white">Jami to'lovlar</th>
                             <th class="bg-primary text-white">Xisoblangan ish haqi</th>
                             <th class="bg-primary text-white">To'langan</th>
-                        </tr>
+                        </tr> 
                     </thead>
                     <tbody>
                         @forelse($Guruh as $item)

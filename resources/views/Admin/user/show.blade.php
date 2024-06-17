@@ -390,6 +390,14 @@
                                 </select>
                             </div>
                             <div class="col-12">
+                                <label for="type" class="mt-lg-0 mt-3">Qaysi guruhga to'lov qaytarilsin</label>
+                                <select name="guruh_id"  class="form-select">
+                                    @foreach($ChegirmaGuruh as $item)
+                                    <option value="{{ $item['guruh_id'] }}">{{ $item['guruh_name'] }} (Tulov:{{ $item['chegirmaTulov'] }})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12">
                                 <label for="about" class="mt-3">Qaytarish haqida</label>
                                 <textarea name="about" onkeyup="Buttons44()" class="form-control mb-3 mt-1" required></textarea>
                             </div>

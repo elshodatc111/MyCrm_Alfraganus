@@ -29,6 +29,12 @@ class SuperAdminTecherController extends Controller{
             if($value['type']=='Naqt'){
                 $Summa = $Summa + $value->summa;
             }
+            if($value['type']=='Qaytarildi (Naqt)'){
+                $Summa = $Summa - $value->summa;
+            }
+            if($value['type']=='Qaytarildi (Plastik)'){
+                $Summa = $Summa - $value->summa;
+            }
             if($value['type']=='Plastik'){
                 $Summa = $Summa + $value->summa;
             }

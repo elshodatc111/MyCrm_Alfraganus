@@ -63,6 +63,12 @@ class AdminTecherController extends Controller{
                 if($value_1['type']=='Naqt'){
                     $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
                 }
+                if($value_1['type']=='Qaytarildi (Naqt)'){
+                    $GuruhgaTulovlar = $GuruhgaTulovlar - $value_1['summa'];
+                }
+                if($value_1['type']=='Qaytarildi (Plastik)'){
+                    $GuruhgaTulovlar = $GuruhgaTulovlar - $value_1['summa'];
+                }
                 if($value_1['type']=='Plastik'){
                     $GuruhgaTulovlar = $GuruhgaTulovlar + $value_1['summa'];
                 }

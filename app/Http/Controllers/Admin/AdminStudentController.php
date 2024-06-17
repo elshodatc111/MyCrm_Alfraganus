@@ -476,11 +476,12 @@ class AdminStudentController extends Controller{
         $Balans = $User->balans;
         $User->balans = $Balans-$summa;
         $User->save();
+        $GuruxName = Guruh::find($request->guruh_id)->guruh_name;
         $UserHistory = UserHistory::create([
             'filial_id'=>request()->cookie('filial_id'),
             'user_id'=>$request->id,
             'status'=>'Qaytarildi ('.$request->type.")",
-            'type'=>" ",
+            'type'=>$GuruxName,
             'summa'=>$summa,
             'xisoblash'=>$Balans."-".$summa."=".$Balans-$summa,
             'balans'=>$Balans-$summa
@@ -488,7 +489,7 @@ class AdminStudentController extends Controller{
         $Tulov = Tulov::create([
             'filial_id' => request()->cookie('filial_id'),
             'user_id' => $request->id,
-            'guruh_id' => " ",
+            'guruh_id' => $request->guruh_id,
             'summa' => $summa,
             'type' => 'Qaytarildi ('.$request->type.")",
             'status' => 'true',
